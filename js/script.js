@@ -53,22 +53,27 @@ init();
  * ===================================
  */
 
-/**
- * Helper functions
- */
 
 function init() {
 	work.mins = work.mins_def;
 
 	// only display mins
-	draw(mins_container, work.mins);
+	draw(mins_container,two_padded(work.mins));
 
 	draw(secs_container, "");
 	draw(colon_container, "");
 }
 
+/**
+ * Helper functions
+ */
+
 function draw(container, value) {
 	container.innerText = value;
+}
+
+function two_padded(num) {
+	return num > 9 ? num : "0" + num;
 }
 
 
@@ -82,7 +87,7 @@ function start_countdown(obj) {
 	clock.mins = clock.mins_def;
 	--clock.mins;
 
-	draw(mins_container, clock.mins);
+	draw(mins_container, two_padded(clock.mins));
 	draw(secs_container, 59);
 
 	draw(colon_container, ":");
@@ -102,8 +107,8 @@ function countdown() {
 		--mins;
 		secs = 59;
 
-		draw(mins_container, mins);
-		draw(secs_container, secs);
+		draw(mins_container, two_padded(mins));
+		draw(secs_container, two_padded(secs));
 		return;
 	}
 
@@ -116,7 +121,7 @@ function countdown() {
 	}
 
 	// only update seconds
-	draw(secs_container, secs);
+	draw(secs_container, two_padded(secs));
 }
 
 function switch_seg() {
