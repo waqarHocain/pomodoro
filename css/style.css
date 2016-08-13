@@ -1,0 +1,67 @@
+/**
+ * Main stylesheet for pomodoro timer
+ * Author: Waqar Hocain
+ * <waqarmaxtan@gmail.com>
+ */
+/* line 12, ../scss/style.scss */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 19, ../scss/style.scss */
+body {
+  background-color: #fff;
+  color: #8D959B;
+  font: 1em "Open Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+/* line 27, ../scss/style.scss */
+p {
+  margin-bottom: 15px;
+}
+
+/* line 32, ../scss/style.scss */
+a {
+  color: #4B96F0;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+/* line 38, ../scss/style.scss */
+a:hover, a:focus {
+  color: #8D959B;
+  text-decoration: underline;
+}
+
+/* line 46, ../scss/style.scss */
+button {
+  background-color: #fff;
+  border: 3px solid #4B96F0;
+  border-radius: 3px;
+  color: #4B96F0;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  outline: none;
+  padding: 10px 30px;
+  transition: all 0.3s;
+}
+/* line 59, ../scss/style.scss */
+button:hover, button:focus {
+  color: #fff;
+  background-color: #4B96F0;
+}
+
+/* line 71, ../scss/style.scss */
+header h1 {
+  margin: 30px 0 50px 0;
+}
+
+/* line 79, ../scss/style.scss */
+#time {
+  color: #404060;
+  font-size: 88px;
+  font-weight: bold;
+  padding-bottom: 60px;
+}
