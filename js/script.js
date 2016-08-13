@@ -6,7 +6,8 @@
 var colon_container = document.getElementById("colon"),
 	mins_container = document.getElementById("mins"),
 	secs_container = document.getElementById("secs"),
-	start_btn = document.getElementById("start");
+	start_btn = document.getElementById("start"),
+	state_container	= document.getElementById("state");
 
 
 
@@ -24,12 +25,23 @@ start_btn.addEventListener("click", function() { start_countdown(work); }, false
  * ===================================
  */
 
+// used for setInterval()
 var interval;
 
+// used for keeping track of currently running timer
+var clock = {};
+
+
 var work = {
-	mins: 1,
+	mins: 2,
 	mins_def : 1,
 	state: "work"
+};
+
+var brk = {
+	mins: 1,
+	mins_def: 1,
+	state: "break"
 };
 
 init();
@@ -42,7 +54,7 @@ init();
  */
 
 /**
- * Functions related to updating screen
+ * Helper functions
  */
 
 function init() {
@@ -66,11 +78,15 @@ function draw(container, value) {
 
 // display seconds && start countdown
 function start_countdown(obj) {
-	--obj.mins;
+	clock = obj;
+	clock.mins = clock.mins_def;
+	--clock.mins;
 
-	draw(mins_container, obj.mins);
-	draw(colon_container, ":");
+	draw(mins_container, clock.mins);
 	draw(secs_container, 59);
+
+	draw(colon_container, ":");
+	draw(state_container, clock.state);
 
 	// run countdown() after every one second
 	interval = setInterval(countdown, 1000);
@@ -94,10 +110,21 @@ function countdown() {
 	// check if timer ended
 	else if (secs < 0 && mins <= 0) {
 		clearInterval(interval);
-		init();
+
+		switch_seg();
 		return;
 	}
 
 	// only update seconds
 	draw(secs_container, secs);
+}
+
+function switch_seg() {
+	if (clock.state === work.state) {
+		start_countdown(brk);
+		return;
+	}
+	else {
+		start_countdown(work);
+	}
 }
