@@ -94,12 +94,15 @@ function switch_btn_text() {
 function switch_state() {
 	if (clock.state === "unset") {
 		clock.state = "work";
+		state_container.innerText = work.state.toUpperCase();
 	}
 	else if (clock.state === work.state) {
 		clock.state = brk.state;
+		state_container.innerText = brk.state.toUpperCase();
 	}
 	else if (clock.state === brk.state) {
 		clock.state = work.state;
+		state_container.innerText = work.state.toUpperCase();
 	}
 }
 
@@ -169,14 +172,14 @@ function switch_seg() {
 		clearInterval(interval);
 		draw(time_container, two_padded(brk.mins_def));
 		switch_state();
-		setTimeout(start_countdown, 500);
+		setTimeout(start_countdown, 1000);
 		return;
 	}
 	else {
 		clearInterval(interval);
 		draw(time_container, two_padded(work.mins_def));
 		switch_state();
-		setTimeout(start_countdown, 500);
+		setTimeout(start_countdown, 1000);
 		return;
 	}
 }
