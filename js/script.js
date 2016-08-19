@@ -116,6 +116,12 @@ function start_countdown(event) {
 	event = event || "";
 
 	if (event.type === "click") {
+
+		// disable button in break mode
+		if (clock.state === brk.state) {
+			start_btn.disable = true;
+			return;
+		}
 		
 		// if the timer is not already running
 		if (start_btn.innerText.toLowerCase() === 'pause') {
