@@ -3,11 +3,9 @@
  * get dom elements
  * ===================================
  */
-var colon_container = document.getElementById("colon"),
-	mins_container = document.getElementById("mins"),
-	secs_container = document.getElementById("secs"),
-	start_btn = document.getElementById("start"),
-	state_container	= document.getElementById("state");
+	var start_btn = document.getElementById("start"),
+			time_container = document.getElementById("time"),
+			state_container	= document.getElementById("state");
 
 
 
@@ -16,7 +14,7 @@ var colon_container = document.getElementById("colon"),
  * attach event listeners
  * ===================================
  */
-start_btn.addEventListener("click", function() { start_countdown(work); }, false);
+start_btn.addEventListener("click", function(event) { start_countdown(event); }, false);
 
 
 /**
@@ -29,19 +27,23 @@ start_btn.addEventListener("click", function() { start_countdown(work); }, false
 var interval;
 
 // used for keeping track of currently running timer
-var clock = {};
+var clock = {
+	state : "unset"
+};
 
 
 var work = {
 	mins: 2,
 	mins_def : 1,
-	state: "work"
+	state: "work",
+	running: false
 };
 
 var brk = {
 	mins: 1,
 	mins_def: 1,
-	state: "break"
+	state: "break",
+	running: false
 };
 
 init();
@@ -58,16 +60,20 @@ function init() {
 	work.mins = work.mins_def;
 
 	// only display mins
-	draw(mins_container,two_padded(work.mins));
+	draw(time_container,two_padded(work.mins));
+}
 
-	draw(secs_container, "");
-	draw(colon_container, "");
+function pause() {
+	clearInterval(interval);
+}
+
+function resume() {
+
 }
 
 /**
  * Helper functions
- */
-
+ */ 
 function draw(container, value) {
 	container.innerText = value;
 }
@@ -76,30 +82,65 @@ function two_padded(num) {
 	return num > 9 ? num : "0" + num;
 }
 
+function switch_btn_text() {
+	if (start_btn.innerText.toLowerCase() === "start") {
+		start_btn.innerText = "Pause";
+	}
+	else {
+		start_btn.innerText = "Start";
+	}
+}
+
+function switch_state() {
+	if (clock.state === "unset") {
+		clock.state = "work";
+	}
+	else if (clock.state === work.state) {
+		clock.state = brk.state;
+	}
+	else if (clock.state === brk.state) {
+		clock.state = work.state;
+	}
+}
 
 /**
  * Functions related to countdown
  */
 
-// display seconds && start countdown
-function start_countdown(obj) {
-	clock = obj;
-	clock.mins = clock.mins_def;
-	--clock.mins;
+// starts || pause countdown
+function start_countdown(event) {
+	// if the user wants to pause timer
+	event = event || "";
 
-	draw(mins_container, two_padded(clock.mins));
-	draw(secs_container, 59);
+	if (event.type === "click") {
+		
+		// if the timer is not already running
+		if (start_btn.innerText.toLowerCase() === 'pause') {
+			switch_btn_text();
+			clearInterval(interval);
+			return;
+		}
 
-	draw(colon_container, ":");
-	draw(state_container, clock.state);
+		switch_btn_text();
+	}
+
+	if (clock.state === "unset") {
+		switch_state();
+	}
+
+	// if the timer was not previously paused
+	if (time_container.innerText.indexOf(":") === -1) {
+		var mins = parseInt(time_container.innerText);
+		draw(time_container, two_padded(--mins) + ":59");
+	}
 
 	// run countdown() after every one second
 	interval = setInterval(countdown, 1000);
 }
 
 function countdown() {
-	var mins = parseInt(mins_container.innerText),
-			secs = parseInt(secs_container.innerText);
+	var mins = parseInt(time_container.innerText.substr(0, time_container.innerText.indexOf(":"))),
+			secs = parseInt(time_container.innerText.substr(time_container.innerText.indexOf(":") + 1));
 
 	--secs;
 
@@ -107,8 +148,7 @@ function countdown() {
 		--mins;
 		secs = 59;
 
-		draw(mins_container, two_padded(mins));
-		draw(secs_container, two_padded(secs));
+		draw(time_container, two_padded(mins) + ":" + two_padded(secs));
 		return;
 	}
 
@@ -121,15 +161,22 @@ function countdown() {
 	}
 
 	// only update seconds
-	draw(secs_container, two_padded(secs));
+	draw(time_container, two_padded(mins) + ":" + two_padded(secs));
 }
 
 function switch_seg() {
 	if (clock.state === work.state) {
-		start_countdown(brk);
+		clearInterval(interval);
+		draw(time_container, two_padded(brk.mins_def));
+		switch_state();
+		setTimeout(start_countdown, 500);
 		return;
 	}
 	else {
-		start_countdown(work);
+		clearInterval(interval);
+		draw(time_container, two_padded(work.mins_def));
+		switch_state();
+		setTimeout(start_countdown, 500);
+		return;
 	}
 }
