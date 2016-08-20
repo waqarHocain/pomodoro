@@ -65,3 +65,40 @@ header h1 {
   font-weight: bold;
   padding-bottom: 60px;
 }
+
+/* line 88, ../scss/style.scss */
+#adjuster {
+  max-width: 400px;
+  margin: -20px auto 10px;
+}
+/* line 94, ../scss/style.scss */
+#adjuster li {
+  display: inline-block;
+}
+/* line 98, ../scss/style.scss */
+#adjuster li a {
+  font-size: 32px;
+  transition: all 0.3s;
+}
+/* line 103, ../scss/style.scss */
+#adjuster li a:hover, #adjuster li a:focus {
+  transform: scale(1.4);
+  text-decoration: none;
+}
+
+/* line 113, ../scss/style.scss */
+#inc {
+  float: left;
+}
+
+/* line 118, ../scss/style.scss */
+#dec {
+  float: right;
+}
+
+/* line 125, ../scss/style.scss */
+#adjuster:after {
+  content: "";
+  display: table;
+  clear: both;
+}

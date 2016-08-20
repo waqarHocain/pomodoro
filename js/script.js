@@ -4,6 +4,8 @@
  * ===================================
  */
 	var start_btn = document.getElementById("start"),
+			inc_btn = document.getElementById("inc"),
+			dec_btn = document.getElementById("dec"),
 			time_container = document.getElementById("time"),
 			state_container	= document.getElementById("state");
 
@@ -16,6 +18,8 @@
  */
 start_btn.addEventListener("click", function(event) { start_countdown(event); }, false);
 
+inc_btn.addEventListener("click", inc, false);
+dec_btn.addEventListener("click", dec, false);
 
 /**
  * ===================================
@@ -59,16 +63,30 @@ init();
 function init() {
 	work.mins = work.mins_def;
 
-	// only display mins
 	draw(time_container,two_padded(work.mins));
 }
 
-function pause() {
-	clearInterval(interval);
+
+function inc() {
+	if (clock.state !== "unset") {
+		return;
+	}
+
+	++work.mins_def;
+	init();
 }
 
-function resume() {
+function dec() {
+	if (clock.state !== "unset") {
+		return;
+	}
 
+	if (work.mins_def <= 1) {
+		return;
+	}
+
+	--work.mins_def;
+	init();
 }
 
 /**
@@ -80,30 +98,6 @@ function draw(container, value) {
 
 function two_padded(num) {
 	return num > 9 ? num : "0" + num;
-}
-
-function switch_btn_text() {
-	if (start_btn.innerText.toLowerCase() === "start") {
-		start_btn.innerText = "Pause";
-	}
-	else {
-		start_btn.innerText = "Start";
-	}
-}
-
-function switch_state() {
-	if (clock.state === "unset") {
-		clock.state = "work";
-		state_container.innerText = work.state.toUpperCase();
-	}
-	else if (clock.state === work.state) {
-		clock.state = brk.state;
-		state_container.innerText = brk.state.toUpperCase();
-	}
-	else if (clock.state === brk.state) {
-		clock.state = work.state;
-		state_container.innerText = work.state.toUpperCase();
-	}
 }
 
 /**
@@ -187,5 +181,29 @@ function switch_seg() {
 		switch_state();
 		setTimeout(start_countdown, 1000);
 		return;
+	}
+}
+
+function switch_btn_text() {
+	if (start_btn.innerText.toLowerCase() === "start") {
+		start_btn.innerText = "Pause";
+	}
+	else {
+		start_btn.innerText = "Start";
+	}
+}
+
+function switch_state() {
+	if (clock.state === "unset") {
+		clock.state = "work";
+		state_container.innerText = work.state.toUpperCase();
+	}
+	else if (clock.state === work.state) {
+		clock.state = brk.state;
+		state_container.innerText = brk.state.toUpperCase();
+	}
+	else if (clock.state === brk.state) {
+		clock.state = work.state;
+		state_container.innerText = work.state.toUpperCase();
 	}
 }
