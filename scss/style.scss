@@ -8,7 +8,7 @@
 @import "variables";
 
 
-// Reset =====================
+// Global Reset =====================
 *
 {
 	margin: 0;
@@ -121,6 +121,29 @@ header
 }
 
 
+// buttons ==========================
+#start,
+#reset
+{
+	display: block;
+	margin: 15px auto 0;
+}
+
+#reset 
+{
+	border-color: $c-red;
+	color: $c-red;
+	opacity: 0;
+	transition: all 0.3s;
+	visibility: hidden;
+
+	&:hover,
+	&:focus
+	{
+		background-color: $c-red;
+		color: $c-white;
+	}
+}
 // placeholders && base classes ==========================
 %group:after
 {

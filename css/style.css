@@ -97,6 +97,27 @@ header h1 {
 }
 
 /* line 125, ../scss/style.scss */
+#start,
+#reset {
+  display: block;
+  margin: 15px auto 0;
+}
+
+/* line 132, ../scss/style.scss */
+#reset {
+  border-color: #E96575;
+  color: #E96575;
+  opacity: 0;
+  transition: all 0.3s;
+  visibility: hidden;
+}
+/* line 140, ../scss/style.scss */
+#reset:hover, #reset:focus {
+  background-color: #E96575;
+  color: #fff;
+}
+
+/* line 148, ../scss/style.scss */
 #adjuster:after {
   content: "";
   display: table;

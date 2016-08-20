@@ -4,6 +4,7 @@
  * ===================================
  */
 	var start_btn = document.getElementById("start"),
+			reset_btn = document.getElementById("reset"),
 			inc_btn = document.getElementById("inc"),
 			dec_btn = document.getElementById("dec"),
 			time_container = document.getElementById("time"),
@@ -17,6 +18,8 @@
  * ===================================
  */
 start_btn.addEventListener("click", function(event) { start_countdown(event); }, false);
+
+reset_btn.addEventListener("click", reset, false);
 
 inc_btn.addEventListener("click", inc, false);
 dec_btn.addEventListener("click", dec, false);
@@ -63,6 +66,8 @@ init();
 function init() {
 	work.mins = work.mins_def;
 
+	start_btn.innerText = "Start";
+
 	draw(time_container,two_padded(work.mins));
 }
 
@@ -73,7 +78,7 @@ function inc() {
 	}
 
 	++work.mins_def;
-	init();
+	draw(time_container, two_padded(work.mins_def));
 }
 
 function dec() {
@@ -86,7 +91,17 @@ function dec() {
 	}
 
 	--work.mins_def;
+	draw(time_container, two_padded(work.mins_def));
+}
+
+function reset() {
+	clock.state = "unset";
+	clearInterval(interval);
 	init();
+
+	// hide the reset button
+	reset_btn.style.opacity = 0;
+	reset_btn.style.visiblity = "hidden";
 }
 
 /**
@@ -135,6 +150,10 @@ function start_countdown(event) {
 	if (time_container.innerText.indexOf(":") === -1) {
 		var mins = parseInt(time_container.innerText);
 		draw(time_container, two_padded(--mins) + ":59");
+
+		// show the reset button
+		reset_btn.style.opacity = 1;
+		reset_btn.style.visibility = "visible";
 	}
 
 	// run countdown() after every one second
