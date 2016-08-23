@@ -84,41 +84,8 @@ header
 	padding-bottom: 60px;
 }
 
-// adjuster ==========================
-#adjuster
-{
-	@extend %group;
-	max-width: 400px;
-	margin: -20px auto 10px;
+// details section ==========================
 
-	li
-	{
-		display: inline-block;
-
-		a 
-		{
-			font-size: 32px;
-			transition: all 0.3s;
-
-			&:hover,
-			&:focus
-			{
-				transform: scale(1.4);
-				text-decoration: none;
-			}
-		} // a
-	} // li
-}
-
-#inc
-{
-	float: left;
-}
-
-#dec
-{
-	float: right;
-}
 
 
 // buttons ==========================

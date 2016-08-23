@@ -5,8 +5,12 @@
  */
 	var start_btn = document.getElementById("start"),
 			reset_btn = document.getElementById("reset"),
-			inc_btn = document.getElementById("inc"),
-			dec_btn = document.getElementById("dec"),
+			inc_work_btn = document.getElementById("inc_work"),
+			dec_work_btn = document.getElementById("dec_work"),
+			inc_brk_btn = document.getElementById("inc_brk"),
+			dec_brk_btn = document.getElementById("dec_brk"),
+			detail_work_container = document.getElementById("detail_work"),
+			detail_brk_container = document.getElementById("detail_brk"),
 			time_container = document.getElementById("time"),
 			state_container	= document.getElementById("state");
 
@@ -21,8 +25,11 @@ start_btn.addEventListener("click", function(event) { start_countdown(event); },
 
 reset_btn.addEventListener("click", reset, false);
 
-inc_btn.addEventListener("click", inc, false);
-dec_btn.addEventListener("click", dec, false);
+inc_work_btn.addEventListener("click", inc_work, false);
+dec_work_btn.addEventListener("click", dec_work, false);
+
+inc_brk_btn.addEventListener("click", inc_brk, false);
+dec_brk_btn.addEventListener("click", dec_brk, false);
 
 /**
  * ===================================
@@ -65,33 +72,44 @@ init();
 
 function init() {
 	work.mins = work.mins_def;
+	brk.mins = brk.mins_def;
 
 	start_btn.innerText = "Start";
 
 	draw(time_container,two_padded(work.mins));
+
+	draw(detail_work_container, two_padded(work.mins));
+	draw(detail_brk_container, two_padded(brk.mins));
+
 }
 
 
-function inc() {
-	if (clock.state !== "unset") {
-		return;
+function inc_work() {
+	inc(work);
+	if (clock.state === "unset") {
+		draw(time_container, two_padded(work.mins_def));
+		draw(detail_work_container, two_padded(work.mins_def));
 	}
-
-	++work.mins_def;
-	draw(time_container, two_padded(work.mins_def));
 }
 
-function dec() {
-	if (clock.state !== "unset") {
-		return;
+function dec_work() {
+	dec(work);
+	if (clock.state === "unset") {
+		draw(time_container, two_padded(work.mins_def));
+		draw(detail_work_container, two_padded(work.mins_def));
 	}
+}
 
-	if (work.mins_def <= 1) {
-		return;
-	}
+function inc_brk() {
+	inc(brk);
 
-	--work.mins_def;
-	draw(time_container, two_padded(work.mins_def));
+	draw(detail_brk_container, two_padded(brk.mins_def));
+}
+
+function dec_brk() {
+	dec(brk);
+
+	draw(detail_brk_container, two_padded(brk.mins_def));
 }
 
 function reset() {
@@ -113,6 +131,26 @@ function draw(container, value) {
 
 function two_padded(num) {
 	return num > 9 ? num : "0" + num;
+}
+
+function inc(obj) {
+	if (clock.state !== "unset") {
+		return;
+	}
+
+	++obj.mins_def;
+}
+
+function dec(obj) {
+	if (clock.state !== "unset") {
+		return;
+	}
+
+	if (obj.mins_def <= 1) {
+		return;
+	}
+
+	--obj.mins_def;
 }
 
 /**

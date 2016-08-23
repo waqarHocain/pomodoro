@@ -16,17 +16,24 @@
   </header>
 
 	<main>
-		<p id="time"></p>
+		<section class="top">
+			<p id="time"></p>
+			
+		</section>
 
-		<ul id="adjuster">
-			<li id="inc"><a href="#">+</a></li>
-			<li id="dec"><a href="#">-</a></li>
-		</ul>
+		<section class="middle">
+			<p id="state">&nbsp;</p>
 
-		<p id="state">&nbsp;</p>
+			<ul class="details">
+				<li>Break Time: <a href="#" id="inc_brk" class="icon">+</a> <span id="detail_brk">05</span> <a href="#" id="dec_brk" class="icon">-</a></li>
+				<li>Work Time: <a href="#" id="inc_work" class="icon">+</a> <span id="detail_work">25</span> <a href="#" id="dec_work" class="icon">-</a></li>
+			</ul>
+		</section>
 
-		<button id="start">Start</button>
-		<button id="reset">Reset</button>
+		<section class="bottom">
+			<button id="start">Start</button>
+			<button id="reset">Reset</button>
+		</section>
 	</main>
 
   <script src="js/script.js"></script>
