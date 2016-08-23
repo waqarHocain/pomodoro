@@ -11,9 +11,9 @@
 			dec_brk_btn = document.getElementById("dec_brk"),
 			detail_work_container = document.getElementById("detail_work"),
 			detail_brk_container = document.getElementById("detail_brk"),
+			details_container = document.getElementById("details"),
 			time_container = document.getElementById("time"),
 			state_container	= document.getElementById("state");
-
 
 
 /**
@@ -118,8 +118,10 @@ function reset() {
 	init();
 
 	// hide the reset button
-	reset_btn.style.opacity = 0;
-	reset_btn.style.visiblity = "hidden";
+	hide(reset_btn);
+
+	// show details section
+	show(details_container);
 }
 
 /**
@@ -153,8 +155,18 @@ function dec(obj) {
 	--obj.mins_def;
 }
 
+function hide(elem) {
+	elem.style.opacity = 0;
+	elem.style.visiblity = "hidden";
+}
+
+function show(elem) {
+	elem.style.opacity = 1;
+	elem.style.visibility = "visible";
+}
+
 /**
- * Functions related to countdown
+ * Functions related to start_countdown
  */
 
 // starts || pause countdown
@@ -190,8 +202,11 @@ function start_countdown(event) {
 		draw(time_container, two_padded(--mins) + ":59");
 
 		// show the reset button
-		reset_btn.style.opacity = 1;
-		reset_btn.style.visibility = "visible";
+		show(reset_btn);
+
+		// hide details section
+		hide(details_container);
+
 	}
 
 	// run countdown() after every one second

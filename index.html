@@ -8,6 +8,13 @@
 
   <!-- // Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+  	#details
+  	{
+			transition: all 0.3s;
+  	}
+  </style>
   
 </head>
 <body>
@@ -18,13 +25,12 @@
 	<main>
 		<section class="top">
 			<p id="time"></p>
-			
 		</section>
 
 		<section class="middle">
 			<p id="state">&nbsp;</p>
 
-			<ul class="details">
+			<ul id="details">
 				<li>Break Time: <a href="#" id="inc_brk" class="icon">+</a> <span id="detail_brk">05</span> <a href="#" id="dec_brk" class="icon">-</a></li>
 				<li>Work Time: <a href="#" id="inc_work" class="icon">+</a> <span id="detail_work">25</span> <a href="#" id="dec_work" class="icon">-</a></li>
 			</ul>
@@ -34,7 +40,7 @@
 			<button id="start">Start</button>
 			<button id="reset">Reset</button>
 		</section>
-	</main>
+	</main>	
 
   <script src="js/script.js"></script>
 </body>
