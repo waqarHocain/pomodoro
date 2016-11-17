@@ -11,8 +11,8 @@
 
 /* line 19, ../scss/style.scss */
 body {
-  background-color: #fff;
-  color: #8D959B;
+  background-color: #f9f9f9;
+  color: #404060;
   font: 1em "Open Sans", Arial, sans-serif;
   text-align: center;
 }
@@ -53,13 +53,19 @@ button:hover, button:focus {
   background-color: #4B96F0;
 }
 
-/* line 71, ../scss/style.scss */
+/* line 69, ../scss/style.scss */
+header {
+  background-color: #fff;
+}
+/* line 73, ../scss/style.scss */
 header h1 {
-  margin: 30px 0 50px 0;
+  color: #8D959B;
+  padding: 30px 0 50px 0;
 }
 
-/* line 79, ../scss/style.scss */
+/* line 82, ../scss/style.scss */
 #time {
+  background-color: #fff;
   color: #404060;
   font-size: 88px;
   font-weight: bold;
@@ -67,21 +73,67 @@ header h1 {
 }
 
 /* line 92, ../scss/style.scss */
+#state {
+  background-color: #eee;
+  border-radius: 20px/45px;
+  color: #404060;
+  font-weight: bold;
+  margin: -2% auto 0;
+  max-width: 300px;
+  padding: 10px 0;
+  transition: all 0.3s;
+}
+
+/* line 105, ../scss/style.scss */
+#details {
+  margin: 10px 0;
+  transition: all 0.8s;
+}
+/* line 110, ../scss/style.scss */
+#details li {
+  line-height: 1.4;
+  color: #8D959B;
+}
+
+/* line 117, ../scss/style.scss */
+.default_time {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+/* line 123, ../scss/style.scss */
+#inc_work,
+#detail_work,
+#dec_work,
+#inc_brk,
+#detail_brk,
+#dec_brk {
+  font-weight: bold;
+}
+
+/* line 133, ../scss/style.scss */
+#detail_work,
+#detail_brk {
+  color: #404060;
+}
+
+/* line 141, ../scss/style.scss */
 #start,
 #reset {
   display: block;
   margin: 15px auto 0;
+  width: 130px;
 }
 
-/* line 99, ../scss/style.scss */
+/* line 149, ../scss/style.scss */
 #reset {
   border-color: #E96575;
   color: #E96575;
   opacity: 0;
-  transition: all 0.3s;
+  transition: all 0.8s;
   visibility: hidden;
 }
-/* line 107, ../scss/style.scss */
+/* line 157, ../scss/style.scss */
 #reset:hover, #reset:focus {
   background-color: #E96575;
   color: #fff;

@@ -18,8 +18,8 @@
 // Base Styles =====================
 body
 {
-	background-color: $c-white;
-	color: $c-gray;
+	background-color: $c-light;
+	color: $c-dark;
 	font: 1em $f-primary;
 	text-align: center;
 }
@@ -68,9 +68,12 @@ button
 // Header ==========================
 header
 {
+	background-color: $c-white;
+
 	h1
 	{
-		margin: 30px 0 50px 0;
+		color: $c-gray;
+		padding: 30px 0 50px 0;
 	}
 }
 
@@ -78,14 +81,60 @@ header
 // timer ==========================
 #time
 {
+	background-color: $c-white;
 	color: $c-dark;
 	font-size: 88px;
 	font-weight: bold;
 	padding-bottom: 60px;
 }
 
-// details section ==========================
+// #state ==========================
+#state
+{
+	background-color: $c-lgray;
+	border-radius: 20px/45px;
+	color: $c-dark;
+	font-weight: bold;
+	margin: -2% auto 0;
+	max-width: 300px;
+	padding: 10px 0;
+	transition: all 0.3s;
+}
 
+// #details ==========================
+#details
+{
+	margin: 10px 0;
+	transition: all 0.8s;
+
+	li
+	{
+		line-height: 1.4;
+		color: $c-gray;
+	}
+}
+
+.default_time
+{
+	display: inline-block;
+	margin-left: 25px;
+}
+
+#inc_work,
+#detail_work,
+#dec_work,
+#inc_brk,
+#detail_brk,
+#dec_brk
+{
+	font-weight: bold;
+}
+
+#detail_work,
+#detail_brk
+{
+	color: $c-dark;
+}
 
 
 // buttons ==========================
@@ -94,6 +143,7 @@ header
 {
 	display: block;
 	margin: 15px auto 0;
+	width: 130px;
 }
 
 #reset 
@@ -101,7 +151,7 @@ header
 	border-color: $c-red;
 	color: $c-red;
 	opacity: 0;
-	transition: all 0.3s;
+	transition: all 0.8s;
 	visibility: hidden;
 
 	&:hover,

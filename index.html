@@ -7,14 +7,8 @@
   <title>Pomodoro - by Waqar Hocain</title>
 
   <!-- // Stylesheet -->
+  <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
-
-  <style>
-  	#details
-  	{
-			transition: all 0.3s;
-  	}
-  </style>
   
 </head>
 <body>
@@ -31,8 +25,23 @@
 			<p id="state">&nbsp;</p>
 
 			<ul id="details">
-				<li>Break Time: <a href="#" id="inc_brk" class="icon">+</a> <span id="detail_brk">05</span> <a href="#" id="dec_brk" class="icon">-</a></li>
-				<li>Work Time: <a href="#" id="inc_work" class="icon">+</a> <span id="detail_work">25</span> <a href="#" id="dec_work" class="icon">-</a></li>
+				<li>
+					Break Time: 
+					<span class="default_time">
+						<a href="#" id="inc_brk" class="icon"><i class="fa fa-plus-circle"></i></a> 
+						<span id="detail_brk">05</span> 
+						<a href="#" id="dec_brk" class="icon"><i class="fa fa-minus-circle"></i></a>
+					</span>
+				</li>
+
+				<li>
+					Work Time:&nbsp;
+					<span class="default_time">
+						<a href="#" id="inc_work" class="icon"><i class="fa fa-plus-circle"></i></a> 
+						<span id="detail_work">25</span> 
+						<a href="#" id="dec_work" class="icon"><i class="fa fa-minus-circle"></i></a>
+					</span>
+				</li>
 			</ul>
 		</section>
 
