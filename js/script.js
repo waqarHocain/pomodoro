@@ -47,15 +47,15 @@ var clock = {
 
 
 var work = {
-	mins: 2,
-	mins_def : 1,
+	mins: 25,
+	mins_def: 25,
 	state: "work",
 	running: false
 };
 
 var brk = {
-	mins: 1,
-	mins_def: 1,
+	mins: 5,
+	mins_def: 5,
 	state: "break",
 	running: false
 };
@@ -75,6 +75,7 @@ function init() {
 	brk.mins = brk.mins_def;
 
 	start_btn.innerText = "Start";
+	state_container.innerText = "! ! ! !";
 
 	draw(time_container,two_padded(work.mins));
 

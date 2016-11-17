@@ -91,33 +91,24 @@ header h1 {
 }
 /* line 110, ../scss/style.scss */
 #details li {
-  line-height: 1.4;
   color: #8D959B;
+  line-height: 1.4;
+  font-weight: bold;
 }
 
-/* line 117, ../scss/style.scss */
+/* line 118, ../scss/style.scss */
 .default_time {
   display: inline-block;
   margin-left: 25px;
 }
 
-/* line 123, ../scss/style.scss */
-#inc_work,
-#detail_work,
-#dec_work,
-#inc_brk,
-#detail_brk,
-#dec_brk {
-  font-weight: bold;
-}
-
-/* line 133, ../scss/style.scss */
+/* line 124, ../scss/style.scss */
 #detail_work,
 #detail_brk {
   color: #404060;
 }
 
-/* line 141, ../scss/style.scss */
+/* line 132, ../scss/style.scss */
 #start,
 #reset {
   display: block;
@@ -125,7 +116,7 @@ header h1 {
   width: 130px;
 }
 
-/* line 149, ../scss/style.scss */
+/* line 140, ../scss/style.scss */
 #reset {
   border-color: #E96575;
   color: #E96575;
@@ -133,7 +124,7 @@ header h1 {
   transition: all 0.8s;
   visibility: hidden;
 }
-/* line 157, ../scss/style.scss */
+/* line 148, ../scss/style.scss */
 #reset:hover, #reset:focus {
   background-color: #E96575;
   color: #fff;
