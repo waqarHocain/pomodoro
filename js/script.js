@@ -37,6 +37,10 @@ dec_brk_btn.addEventListener("click", dec_brk, false);
  * ===================================
  */
 
+// load audio files
+var alarm = new Audio("audio/alarm.mp3"),
+		tick = new Audio("audio/tick.mp3");
+
 // used for setInterval()
 var interval;
 
@@ -141,6 +145,7 @@ function inc(obj) {
 		return;
 	}
 
+	tick.play();
 	++obj.mins_def;
 }
 
@@ -153,6 +158,7 @@ function dec(obj) {
 		return;
 	}
 
+	tick.play();
 	--obj.mins_def;
 }
 
@@ -243,6 +249,8 @@ function countdown() {
 function switch_seg() {
 	if (clock.state === work.state) {
 		clearInterval(interval);
+		alarm.play();
+
 		draw(time_container, two_padded(brk.mins_def));
 		switch_state();
 		setTimeout(start_countdown, 1000);
@@ -250,6 +258,8 @@ function switch_seg() {
 	}
 	else {
 		clearInterval(interval);
+		alarm.play();
+
 		draw(time_container, two_padded(work.mins_def));
 		switch_state();
 		setTimeout(start_countdown, 1000);
